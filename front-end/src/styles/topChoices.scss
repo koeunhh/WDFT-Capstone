@@ -1,0 +1,30 @@
+.topChoices{
+
+  button{
+    width: 110px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
+  .clicked{
+    background-color: purple;
+    color: white;
+    border: solid 3px purple;
+  }
+  
+  .notClicked{
+    background-color: white;
+    color: purple;
+    border: solid 3px purple;
+  }
+  
+  img{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+  
+  .content{
+    display: flex;
+  }
+}

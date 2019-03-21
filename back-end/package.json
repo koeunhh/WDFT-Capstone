@@ -1,0 +1,15 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "capstone project",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  }
+}
