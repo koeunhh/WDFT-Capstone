@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import '../styles/login.scss';
+import pplDancing from '../assets/ppl-dancing.svg';
 export default class Login extends Component{
 
   login = () => {
@@ -17,7 +18,9 @@ export default class Login extends Component{
   render(){
     return(
       <div className='login'>
-        <h2>Login Page</h2>
+        <h1>Welcome to Muze</h1>
+        <img src={pplDancing} alt='ppl-dancing'/>
+        <p>Login to your Spotify and we will let you know which music type you are!</p>
         <button onClick={this.login}>Login to Spotify</button>
       </div>
     )

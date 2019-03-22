@@ -1,0 +1,40 @@
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/Poppins/Poppins-Bold.eot');
+  src: url('../assets/Poppins/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/Poppins/Poppins-Bold.woff2') format('woff2'),
+      url('../assets/Poppins/Poppins-Bold.woff') format('woff'),
+      url('../assets/Poppins/Poppins-Bold.ttf') format('truetype'),
+      url('../assets/Poppins/Poppins-Bold.svg#Poppins-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/Lato/Lato-Regular.eot');
+  src: url('../assets/Lato/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../assets/Lato/Lato-Regular.woff2') format('woff2'),
+      url('../assets/Lato/Lato-Regular.woff') format('woff'),
+      url('../assets/Lato/Lato-Regular.ttf') format('truetype'),
+      url('../assets/Lato/Lato-Regular.svg#Lato-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin mainButton {
+  font-family: 'Poppins';
+  font-size: 14px;
+  line-height: normal;
+  text-align: center;
+  color: #4553CE;
+
+  background: #FFFFFF;
+  border: 3px solid #4456C7;
+  box-sizing: border-box;
+  border-radius: 40.5px;
+  width: 162px;
+  height: 51px;
+  box-shadow: -6px 8px #AFBAFF;
+}

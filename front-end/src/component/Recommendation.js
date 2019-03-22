@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { ScrollTo } from 'react-scroll-to';
 
+import arrowNext from '../assets/arrow-next.svg';
+import arrowPrevious from '../assets/arrow-previous.svg';
+import play from '../assets/play.svg';
+import '../styles/recommendation.scss';
 export default class Recommendation extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       play: false,
@@ -10,44 +15,51 @@ export default class Recommendation extends Component {
   }
 
   togglePlay = (url) => {
-    this.setState({play: !this.state.play})
+    this.setState({ play: !this.state.play })
   }
 
   nextSong = () => {
-    if(this.state.index < 5){
-      this.setState({index: (this.state.index + 1)});
+    if (this.state.index < 4) {
+      this.setState({ index: (this.state.index + 1) });
     }
   }
 
   previousSong = () => {
-    if(this.state.index > 0){
-      this.setState({index: (this.state.index - 1)});
+    if (this.state.index > 0) {
+      this.setState({ index: (this.state.index - 1) });
     }
   }
 
-  render(){
-    const {topTracks} = this.props;
+  render() {
+    const { topTracks } = this.props;
     const currentTrack = topTracks[this.state.index];
 
-    const albumCover = currentTrack.album.images[2].url;
+    const albumCover = currentTrack.album.images[1].url;
     const preview_url = currentTrack.preview_url;
 
     const audio = new Audio(preview_url);
-    if(this.state.play === true){
+    if (this.state.play === true) {
       // console.log(this.state.play);
-      audio.play()
+      audio.play();
     }
-    else{
+    else {
       // console.log(this.state.play);
-      audio.pause()
+      audio.pause();
     }
 
-    return(
+    return (
       <div className='recommendation'>
-        <img onClick={this.previousSong} src='./assets/arrow-previous.svg' alt='previous'/>
-        <img src = {albumCover} alt='albumCover'/>
-        <button onClick={this.togglePlay}>Play</button>
-        <img onClick={this.nextSong} src='./assets/arrow-next.svg' alt='next'/>
+        <div className='player'>
+          <img onClick={this.previousSong} src={arrowPrevious} alt='previous' /> 
+          <img className='player__albumCover' src={albumCover} alt='albumCover' />
+          <img className='player__play' onClick={this.togglePlay} src={play} alt='playPause'/>
+          <img onClick={this.nextSong} src={arrowNext} alt='next' />
+        </div>
+        <ScrollTo>
+          {({ scrollTo }) => (
+            <button className='next' onClick={() => scrollTo({ y: 2668, smooth: true })}>Next</button>
+          )}
+        </ScrollTo>
       </div>
     )
   }

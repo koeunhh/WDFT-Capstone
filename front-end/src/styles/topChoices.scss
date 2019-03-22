@@ -1,22 +1,28 @@
+@import './global.scss';
+
 .topChoices{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 667px;
 
   button{
+    @include mainButton;
     width: 110px;
     height: 40px;
-    border-radius: 20px;
+    box-shadow: none; 
   }
 
   .clicked{
-    background-color: purple;
+    background-color: #4553CE;
     color: white;
-    border: solid 3px purple;
   }
   
-  .notClicked{
-    background-color: white;
-    color: purple;
-    border: solid 3px purple;
-  }
+  // .notClicked{
+  //   background-color: white;
+  //   color: purple;
+  //   border: solid 3px purple;
+  // }
   
   img{
     width: 64px;

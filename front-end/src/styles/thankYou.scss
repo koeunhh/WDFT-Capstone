@@ -1,0 +1,9 @@
+@import './global.scss';
+
+.thankYou{
+  height: 667px;
+
+  button{
+    @include mainButton;
+  }
+}

@@ -1,0 +1,12 @@
+@import './global.scss';
+
+.myType{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  button{
+    @include mainButton;
+  }
+}
