@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import '../styles/thankYou.scss';
 
-export default class ThankYou extends Component{
+export default withRouter(class ThankYou extends Component{
 
   logout = () => {
-    window.location.href = 'https://accounts.spotify.com/logout';
+    window.open('https://accounts.spotify.com/logout');
+    this.props.history.push('/');
   }
 
   render(){
@@ -15,4 +17,4 @@ export default class ThankYou extends Component{
       </div>
     )
   }
-}
+})

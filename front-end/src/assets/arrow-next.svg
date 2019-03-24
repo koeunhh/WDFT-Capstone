@@ -1,13 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="11px" height="18px" viewBox="0 0 11 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
-    <title>Icon-arrow-right</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Global-Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="22.-InStock-Icons" transform="translate(-1118.000000, -367.000000)" fill="#AFAFAF">
-            <g id="Icon/Arrow/Right" transform="translate(1118.000000, 367.000000)">
-                <polygon id="Path" points="2.0971223 1.59872116e-14 0 2.0971223 6.8057554 8.9028777 3.51437504e-15 15.7086331 2.0971223 17.8057554 11 8.9028777"></polygon>
-            </g>
-        </g>
-    </g>
+<svg width="18" height="32" viewBox="0 0 18 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.9954 15.993C17.9824 16.5301 17.7632 17.0435 17.3802 17.4337L3.88013 30.993C3.01526 31.8545 1.59051 31.879 0.694416 31.0476C-0.201681 30.2163 -0.231297 28.8426 0.628201 27.9761L12.634 15.9252L0.628201 3.87434C-0.231297 3.00782 -0.201681 1.63413 0.694416 0.802796C1.59051 -0.028537 3.01526 -0.00409627 3.88013 0.857445L17.3802 14.4168C17.797 14.8409 18.0188 15.4092 17.9954 15.993Z" fill="#4553CE"/>
 </svg>

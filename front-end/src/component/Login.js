@@ -12,6 +12,7 @@ export default class Login extends Component{
       '?response_type=token' +
       '&client_id=' + my_client_id +
       (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+      '&show_dialog=true' + 
       '&redirect_uri=' + encodeURIComponent(redirect_uri);
   }
 

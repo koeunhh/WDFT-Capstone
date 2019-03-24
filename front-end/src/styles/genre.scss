@@ -2,6 +2,85 @@
 
 .genre{
   height: 667px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .title{
+    @include title;
+  }
+
+  .description{
+    font-family: 'Lato';
+    font-size: 14px;
+    line-height: 21px;
+    width: 250px;
+    text-align: center;
+  }
+
+  .content{
+    position: relative;
+    align-self: flex-start;
+
+    &__item{
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+
+      h3{
+        margin: 3px;
+      }
+    }
+
+    #item1{
+      position: absolute;
+      top: 11px;
+      left: 133px;
+      background-color: #FBCBC7;
+      width: 150px;
+      height: 150px;
+    }
+
+    #item2{
+      position: absolute;
+      top: 145px;
+      left: 61px;
+      background: #4456C7;
+      width: 130px;
+      height: 130px;
+    }
+
+    #item3{
+      position: absolute;
+      top: 46px;
+      left: 26px;
+      background: #FFCCF9;      
+      width: 100px;
+      height: 100px;
+    }
+
+    #item4{
+      position: absolute;
+      top: 115px;
+      left: 267px;
+      background: #FFCCF9;      
+      width: 80px;
+      height: 80px;
+    }
+
+    #item5{
+      position: absolute;
+      top: 168px;
+      left: 195px;
+      background: #4456C7;      
+      width: 75px;
+      height: 75px;
+    }
+  }
 
   button{
     @include mainButton;
