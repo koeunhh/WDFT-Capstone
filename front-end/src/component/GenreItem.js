@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Textfit } from 'react-textfit';
 
 export default class GenreItem extends Component {
   render() {
@@ -6,10 +7,11 @@ export default class GenreItem extends Component {
     const id = 'item' + index;
     
     return (
-      <div className='content__item' id={id}>
-        <h3>{Object.keys(item)}</h3>
-        <h3>{Object.values(item)}%</h3>
-      </div>
+        <Textfit mode="single" className='content__item' id={id}>
+        <h3 className='genre'>{Object.keys(item)}</h3>
+        <h3 className='percentage'>{Object.values(item)}%</h3>
+        {/* <h3 className='percentage'>{Object.values(item)}%</h3> */}
+        </Textfit>
     )
   }
 }

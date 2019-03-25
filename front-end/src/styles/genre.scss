@@ -17,11 +17,15 @@
     line-height: 21px;
     width: 250px;
     text-align: center;
+    margin: 22px 0;
   }
 
   .content{
     position: relative;
     align-self: flex-start;
+    left: 50%;
+    transform: translateX(-188px);
+    font-family: 'Poppins';
 
     &__item{
       border-radius: 50%;
@@ -30,9 +34,13 @@
       justify-content: center;
       align-items: center;
       color: white;
+      box-sizing: border-box;
 
       h3{
         margin: 3px;
+        height: 30px;
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -43,6 +51,20 @@
       background-color: #FBCBC7;
       width: 150px;
       height: 150px;
+      padding: 30px;
+
+      .percentage{
+        display: none;
+      }
+
+      &:hover{
+        .genre{
+          display: none;
+        }
+        .percentage{
+          display: block;
+        }
+      }
     }
 
     #item2{
@@ -52,6 +74,20 @@
       background: #4456C7;
       width: 130px;
       height: 130px;
+      padding: 30px;
+
+      .percentage{
+        display: none;
+      }
+
+      &:hover{
+        .genre{
+          display: none;
+        }
+        .percentage{
+        display: block;
+        }
+      }
     }
 
     #item3{
@@ -61,6 +97,20 @@
       background: #FFCCF9;      
       width: 100px;
       height: 100px;
+      padding: 20px;
+
+      .percentage{
+        display: none;
+      }
+
+      &:hover{
+        .genre{
+          display: none;
+        }
+        .percentage{
+          display: block;
+        }
+      }
     }
 
     #item4{
@@ -69,7 +119,21 @@
       left: 267px;
       background: #FFCCF9;      
       width: 80px;
-      height: 80px;
+      height: 80px;  
+      padding: 15px;
+
+      .percentage{
+        display: none;
+      }
+
+      &:hover{
+        .genre{
+          display: none;
+        }
+        .percentage{
+          display: block;
+        }
+      }
     }
 
     #item5{
@@ -79,10 +143,25 @@
       background: #4456C7;      
       width: 75px;
       height: 75px;
+      padding: 10px;
+
+      .percentage{
+        display: none;
+      }
+
+      &:hover{
+        .genre{
+          display: none;
+        }
+        .percentage{
+          display: block;
+        }
+      }
     }
   }
 
   button{
     @include mainButton;
+    margin-top: 310px;
   }
 }

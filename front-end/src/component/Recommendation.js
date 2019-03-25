@@ -4,6 +4,8 @@ import { ScrollTo } from 'react-scroll-to';
 import arrowNext from '../assets/arrow-next.svg';
 import arrowPrevious from '../assets/arrow-previous.svg';
 import play from '../assets/play.svg';
+import squiggly from '../assets/squiggly-line.svg';
+
 import '../styles/recommendation.scss';
 export default class Recommendation extends Component {
   constructor(props) {
@@ -80,13 +82,15 @@ export default class Recommendation extends Component {
     return (
       <div className='recommendation'>
         <h1>Recommended Songs</h1>
+        <img src={squiggly} alt='squiggly-line'/>
+        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a.</p>
         <div className='player'>
           <img onClick={this.previousSong} src={arrowPrevious} alt='previous' /> 
           <img className='player__albumCover' src={albumCover} alt='albumCover' />
           <img className='player__play' onClick={this.togglePlay} src={play} alt='playPause'/>
           <img onClick={this.nextSong} src={arrowNext} alt='next' />
         </div>
-        <h5>{currentTrack.name}</h5>
+        <h5 className='songTitle'>{currentTrack.name}</h5>
         <h5>{artistsString}</h5>
         <h5>{currentTrack.album.release_date.substr(0, 4)}</h5>
         <ScrollTo>

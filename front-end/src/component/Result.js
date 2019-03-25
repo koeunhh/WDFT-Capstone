@@ -8,6 +8,7 @@ import ThankYou from './ThankYou';
 
 import '../styles/result.scss';
 import backgroundTop from '../assets/background-top.svg';
+import backgroundBottom from '../assets/background-bottom.svg';
 
 import axios from 'axios';
 const access_token = window.location.hash.substr(14);
@@ -189,6 +190,7 @@ export default class Result extends Component{
       isLoading ? <Loading/>
       : <div className='result'>
           <img className='backgroundTop' src={backgroundTop} alt='background-top'/>
+          <img className='backgroundBottom' src={backgroundBottom} alt='background-bottom'/>
           <MyType userInfo={userInfo} popularity={popularity}/>
           <TopChoices topArtists={topArtists} topTracks={topTracks}/>
           <Genre/>

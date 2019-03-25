@@ -1,6 +1,12 @@
 
 .backgroundTop{
   position: absolute;
-  left: -50px;
+  // left: -50px;
   z-index: -1;
+}
+
+.backgroundBottom{
+  position: absolute;
+  z-index: -1;
+  top: 2026px;
 }
