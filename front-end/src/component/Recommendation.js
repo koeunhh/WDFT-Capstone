@@ -87,6 +87,7 @@ export default class Recommendation extends Component {
         <div className='player'>
           <img onClick={this.previousSong} src={arrowPrevious} alt='previous' /> 
           <img className='player__albumCover' src={albumCover} alt='albumCover' />
+          <div className='player__overlay'></div>
           <img className='player__play' onClick={this.togglePlay} src={play} alt='playPause'/>
           <img onClick={this.nextSong} src={arrowNext} alt='next' />
         </div>

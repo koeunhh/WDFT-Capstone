@@ -29,8 +29,8 @@ export default class TopChoices extends Component {
     const { artistsBoolean } = this.state;
     const btnArtist = artistsBoolean ? 'clicked' : 'notClicked';
     const btnTrack = artistsBoolean ? 'notClicked' : 'clicked';
-    const artists = (topArtists.length === 1) ? 'Artist' : 'Artists';
-    const tracks = (topTracks.length === 1) ? 'Track' : 'Tracks';
+    // const artists = (topArtists.length === 1) ? 'Artist' : 'Artists';
+    // const tracks = (topTracks.length === 1) ? 'Track' : 'Tracks';
 
     return(
       <div className='topChoices' id='div1'>

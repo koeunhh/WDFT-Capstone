@@ -7,13 +7,7 @@ import GenreItem from './GenreItem';
 
 export default class Genre extends Component{
   render(){
-    const genreArray = [
-                          {'Hip Hop': 50}, 
-                          {'Blues': 50}, 
-                          {'Rock': 40}, 
-                          {'Country': 20},
-                          {'Jazz': 10}
-                       ];
+    const {genreArray} = this.props;
 
     return(
       <div className='genre'>
@@ -22,7 +16,7 @@ export default class Genre extends Component{
       <p className='description'>Tap on the bubbles to see the percentage of each genre of yours!</p>
       <div className='content'>
         {genreArray.map(item => {
-          return <GenreItem item={item} index={genreArray.indexOf(item)+1}/>
+          return <GenreItem item={item} index={genreArray.indexOf(item)+1} key={genreArray.indexOf(item)}/>
         })}
       </div>
       <ScrollTo>

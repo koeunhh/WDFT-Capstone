@@ -12,6 +12,8 @@ import backgroundBottom from '../assets/background-bottom.svg';
 
 import axios from 'axios';
 const access_token = window.location.hash.substr(14);
+var arrayCounter = require('array-counter');
+
 // localStorage.setItem('token', access_token);
 // localStorage.clearItem('token');
 export default class Result extends Component{
@@ -33,7 +35,8 @@ export default class Result extends Component{
                       2015: 0, //2010-2015
                       2018: 0, //2015-2019
                       2019: 0  //2019
-                    }
+                    },
+      genreArray: []
     }
   }
 
@@ -43,7 +46,7 @@ export default class Result extends Component{
     this.getTopTracks();
     this.getPopularityAverage();
     this.getReleaseDate();
-    // this.getAverageYear();
+    this.getGenre();
     window.setTimeout(() => {
       this.setState({isLoading: false})
     }, 1000);
@@ -53,8 +56,8 @@ export default class Result extends Component{
   getUserInfo(){
     axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(response => {
-            console.log('This is your user info: ');
-            console.log(response.data);
+            // console.log('This is your user info: ');
+            // console.log(response.data);
             this.setState({userInfo: response.data});
           })
           .catch((error) => {
@@ -100,6 +103,7 @@ export default class Result extends Component{
     axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=${limit}&offset=${offset}`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(response => {
             const topTracks = response.data.items;
+            // console.log(topTracks);
             const popularityArray = topTracks.map(track => {
               return track.popularity;
             })
@@ -108,8 +112,73 @@ export default class Result extends Component{
               sum += popularityArray[i];
             }
             var popularityAverage = sum / popularityArray.length;
-            console.log(popularityAverage);
+            // console.log(popularityAverage);
             this.setState({popularity: popularityAverage})
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+  }
+
+  getGenre(){
+    const time_range = 'medium_term';
+    const limit = 50;
+    const offset = 0;
+    axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=${limit}&offset=${offset}`, { headers: { 'Authorization': 'Bearer ' + access_token } })
+          .then(response => {
+            const topArtists = response.data.items;
+            var genreArray = [];
+            topArtists.map(artist => {
+              for(let i = 0; i < artist.genres.length; i++){
+                genreArray.push(artist.genres[i]);
+              }
+            });
+            const genreCount = arrayCounter(genreArray);
+            console.log(genreCount);
+            // var keys = Object.keys(genreCount);
+            // const arrayLength = keys.length;
+            // console.log(arrayLength);
+            var sortedCount = [0];
+            var sortedGenre = [];
+            Object.keys(genreCount).forEach(function(key) {
+              if(genreCount[key] > sortedCount[0]){
+                sortedCount.splice(0, 0, genreCount[key]);
+                sortedGenre.splice(0, 0, key);
+              }
+              else{
+                if(genreCount[key] > sortedCount[1]){
+                  sortedCount.splice(1, 0, genreCount[key]);
+                  sortedGenre.splice(1, 0, key);
+                }
+                else{
+                  if(genreCount[key] > sortedCount[2]){
+                    sortedCount.splice(2, 0, genreCount[key]);
+                    sortedGenre.splice(2, 0, key);
+                  }
+                  else{
+                    if(genreCount[key] > sortedCount[3]){
+                      sortedCount.splice(3, 0, genreCount[key]);
+                      sortedGenre.splice(3, 0, key);
+                    }
+                    else{
+                      if(genreCount[key] > sortedCount[4]){
+                        sortedCount.splice(4, 0, genreCount[key]);
+                        sortedGenre.splice(4, 0, key);
+                      }
+                    }
+                  }
+                }
+              }
+            });
+            console.log(sortedCount);
+            console.log(sortedGenre);
+            var arr = [];
+            for(let i = 0; i < 5; i++){
+              var genreObj = new Object();
+              genreObj[sortedGenre[i]] = sortedCount[i];
+              arr.push(genreObj);
+            }
+            this.setState({genreArray: arr});
           })
           .catch((error) => {
             console.log(error);
@@ -126,7 +195,7 @@ export default class Result extends Component{
             const releaseDateArray = topTracks.map(track => {
               return track.album.release_date.substr(0, 4);
             })
-            console.log(releaseDateArray);
+            // console.log(releaseDateArray);
             for(let i = 0; i < releaseDateArray.length; i++){
               const newCopy = Object.assign({}, this.state.release_date);
               if(releaseDateArray[i] >= 2010){
@@ -168,32 +237,25 @@ export default class Result extends Component{
               }
             }
             // console.log(this.state.release_date);
-            const release = this.state.release_date;
-            this.getLargestValue(release);
+            // const release = this.state.release_date;
+            // this.getLargestValue(release);
           })
           .catch((error) => {
             console.log(error);
           });
   }
 
-  getLargestValue(obj){
-    console.log(obj);
-    // for(let i = 0; i < obj.length; i++){
-    //   obj[Object.keys(obj)[i]]
-    // }
-  }
-
   render(){
-    const {isLoading, userInfo, topArtists, topTracks, popularity} = this.state;
+    const {isLoading, userInfo, topArtists, topTracks, popularity, release_date, genreArray} = this.state;
 
     return(
       isLoading ? <Loading/>
       : <div className='result'>
           <img className='backgroundTop' src={backgroundTop} alt='background-top'/>
           <img className='backgroundBottom' src={backgroundBottom} alt='background-bottom'/>
-          <MyType userInfo={userInfo} popularity={popularity}/>
+          <MyType userInfo={userInfo} popularity={popularity} release_date={release_date}/>
           <TopChoices topArtists={topArtists} topTracks={topTracks}/>
-          <Genre/>
+          <Genre genreArray={genreArray}/>
           <Recommendation topTracks={topTracks}/>
           <ThankYou/>
         </div>

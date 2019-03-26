@@ -10,7 +10,6 @@ export default class GenreItem extends Component {
         <Textfit mode="single" className='content__item' id={id}>
         <h3 className='genre'>{Object.keys(item)}</h3>
         <h3 className='percentage'>{Object.values(item)}%</h3>
-        {/* <h3 className='percentage'>{Object.values(item)}%</h3> */}
         </Textfit>
     )
   }

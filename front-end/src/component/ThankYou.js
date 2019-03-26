@@ -15,7 +15,7 @@ export default withRouter(class ThankYou extends Component{
     return(
       <div className='thankYou'>
       <h1>Thank You</h1>
-      <img src={squiggly}/>
+      <img src={squiggly} alt='squiggly-line'/>
       <div className='content'>
         <h5>Muze by Koeun Lee</h5>
         <h5>Branstation</h5>
