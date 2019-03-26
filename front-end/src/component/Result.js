@@ -49,7 +49,7 @@ export default class Result extends Component{
     this.getGenre();
     window.setTimeout(() => {
       this.setState({isLoading: false})
-    }, 1000);
+    }, 3000);
   }
 
   //get current user's profile

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/loading.scss';
-import discoBall from '../assets/disco-ball.svg'
+import discoBall from '../assets/discoBall.gif'
 import pplDancing from '../assets/ppl-dancing.svg';
 export default class Loading extends Component{
   render(){
