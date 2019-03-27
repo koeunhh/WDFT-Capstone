@@ -6,12 +6,18 @@
     "array-counter": "^1.0.0",
     "axios": "^0.18.0",
     "fitty": "^2.2.6",
+    "inline-style-prefixer": "^5.0.4",
+    "motion-ui": "^2.0.3",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
+    "react-animate-on-scroll": "^2.1.5",
+    "react-animated-css": "^1.0.4",
     "react-dom": "^16.8.4",
+    "react-fade": "^1.1.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-scroll-to": "^2.0.5",
+    "react-smooth": "^1.0.2",
     "react-textfit": "^1.1.0"
   },
   "scripts": {

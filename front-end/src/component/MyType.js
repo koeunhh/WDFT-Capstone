@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {ScrollTo} from 'react-scroll-to';
+import Animate from 'react-smooth';
+
 import A from '../assets/girl1.svg';
 import B from '../assets/boy.svg';
 import C from '../assets/girl2.svg';
@@ -98,14 +100,26 @@ export default class MyType extends Component{
 
     return(
       <div className='myType'>
+      <Animate from='0' to='1' attributeName='opacity' duration={2000}>
       <h2 className='hi'>Hi {userInfo.display_name}, your music type is</h2>
+      </Animate>
+      <Animate from='0' to='1' attributeName='opacity' begin={500} duration={2000}>
       <h1 className='type'>{type}</h1>
-      <img src={squiggly} alt='squiggly-line'/>
+      </Animate>
+      <Animate from='0' to='1' attributeName='opacity' begin={500} duration={2000}>
+      <img className='line' src={squiggly} alt='squiggly-line'/>
+      </Animate>
+      <Animate from='0' to='1' attributeName='opacity' begin={1000} duration={2000}>
       <p className='description' id={id}>{text}</p>
-      <img className='character' src={character} alt='character'/>
+      </Animate>
+      <Animate from='0' to='1' attributeName='opacity' begin={1500} duration={2000}>
+        <img className='character' src={character} alt='character'/>
+      </Animate>
       <ScrollTo>
       {({ scrollTo }) => (
+        <Animate from='0' to='1' attributeName='opacity' begin={2000} duration={2000}>
         <button onClick={() => scrollTo({y: 667, smooth: true})}>See details</button>
+        </Animate>
       )}
       </ScrollTo>
       </div>

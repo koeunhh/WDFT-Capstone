@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 export default class Artists extends Component{
   render(){
@@ -10,17 +11,13 @@ export default class Artists extends Component{
 
     return(
       <>
-        {/* {topArtists.map((artist) => {
-          return <div className='content__item' key={artist.id}>
-                    <img src={artist.images[2].url} alt='artist'/>
-                    <h5>{artist.name}</h5>
-                 </div>
-        })} */}
         {artistArray.map((artist) => {
-          return <div className='content__item' key={artist.id}>
-                    <img src={artist.images[2].url} alt='artist'/>
-                    <h5>{artist.name}</h5>
-                 </div>
+          return  <ScrollAnimation animateIn="fadeInLeft">
+                    <div className='content__item' key={artist.id}>
+                      <img src={artist.images[2].url} alt='artist'/>
+                      <h5>{artist.name}</h5>
+                    </div>
+                  </ScrollAnimation>
         })}
       </>
     )

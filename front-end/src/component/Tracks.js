@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 export default class Tracks extends Component{
   render(){
@@ -11,10 +12,12 @@ export default class Tracks extends Component{
     return(
       <>
         {trackArray.map((track) => {
-          return <div className='content__item' key={track.id}>
-                    <img src={track.album.images[2].url} alt='artist'/>
-                    <h5>{track.name}</h5>
-                 </div>
+          return <ScrollAnimation animateIn="fadeInLeft">
+                  <div className='content__item' key={track.id}>
+                      <img src={track.album.images[2].url} alt='artist'/>
+                      <h5>{track.name}</h5>
+                  </div>
+                 </ScrollAnimation>
         })}
       </>
     )

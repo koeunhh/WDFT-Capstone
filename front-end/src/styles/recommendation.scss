@@ -31,7 +31,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-35%, -50%)
+      transform: translate(-45%, -50%)
     }
 
     &__albumCover{
@@ -52,22 +52,31 @@
     }
   }
 
-  h5{
-    font-family: 'Lato';
-    // font-weight: 600;
-    font-size: 14px;
-    line-height: 26px;
-    margin: 0;
-  }
+  .info{
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 
-  .songTitle{
-    text-transform: capitalize;
-    font-family: 'Poppins';
-    font-size: 16px;
+    h5{
+      text-align: center;
+      max-width: 245px;
+      font-family: 'Lato';
+      // font-weight: 600;
+      font-size: 14px;
+      line-height: 26px;
+      margin: 0;
+    }
+  
+    .songTitle{
+      text-transform: capitalize;
+      font-family: 'Poppins';
+      font-size: 16px;
+    }
   }
 
   .next{
     @include mainButton;
-    margin-top: 27px;
+    margin-top: 18px;
   }
 }

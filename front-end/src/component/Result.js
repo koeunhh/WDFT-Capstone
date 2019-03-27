@@ -36,7 +36,8 @@ export default class Result extends Component{
                       2018: 0, //2015-2019
                       2019: 0  //2019
                     },
-      genreArray: []
+      genreArray: [],
+      recommendation: []
     }
   }
 
@@ -49,7 +50,7 @@ export default class Result extends Component{
     this.getGenre();
     window.setTimeout(() => {
       this.setState({isLoading: false})
-    }, 3000);
+    }, 1000);
   }
 
   //get current user's profile
@@ -68,13 +69,18 @@ export default class Result extends Component{
   //get a user's top artists	
   getTopArtists(){
     const time_range = 'medium_term';
-    const limit = 5;
+    const limit = 6;
     const offset = 0;
     axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=${limit}&offset=${offset}`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(response => {
-            console.log('Your top artists are: ');
-            console.log(response.data.items);
-            this.setState({topArtists: response.data.items});
+            // console.log('Your top artists are: ');
+            // console.log(response.data.items);
+            const topArtists = response.data.items;
+            this.setState({topArtists: topArtists});
+
+            for(let i = 0; i < topArtists.length; i++){
+              this.getRelatedArtist(topArtists[i].id);
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -87,8 +93,8 @@ export default class Result extends Component{
     const offset = 0;
     axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=${limit}&offset=${offset}`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(response => {
-            console.log('Your top tracks are: ');
-            console.log(response.data.items);
+            // console.log('Your top tracks are: ');
+            // console.log(response.data.items);
             this.setState({topTracks: response.data.items});
           })
           .catch((error) => {
@@ -128,11 +134,6 @@ export default class Result extends Component{
           .then(response => {
             const topArtists = response.data.items;
             var genreArray = [];
-            // topArtists.map(artist => {
-            //   for(let i = 0; i < artist.genres.length; i++){
-            //     genreArray.push(artist.genres[i]);
-            //   }
-            // });
             for(let i =0; i < topArtists.length; i++){
               for(let j = 0; j < topArtists[i].genres.length; j++){
                 genreArray.push(topArtists[i].genres[j]);
@@ -238,8 +239,6 @@ export default class Result extends Component{
               }
             }
             // console.log(this.state.release_date);
-            // const release = this.state.release_date;
-            // this.getLargestValue(release);
           })
           .catch((error) => {
             console.log(error);
@@ -261,8 +260,11 @@ export default class Result extends Component{
   getArtistTopTrack(id){
     axios.get(`https://api.spotify.com/v1/artists/${id}/top-tracks?country=US`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(res => {
-            console.log(res.data.tracks[0]);
-            console.log(res.data.tracks[1]);
+            // console.log(res.data.tracks[0]);
+            const track = res.data.tracks[0];
+            this.setState({
+              recommendation: [...this.state.recommendation, track]
+            });
           })
           .catch(err => {
             console.log(err);
@@ -270,7 +272,7 @@ export default class Result extends Component{
   }
 
   render(){
-    const {isLoading, userInfo, topArtists, topTracks, popularity, release_date, genreArray} = this.state;
+    const {isLoading, userInfo, topArtists, topTracks, popularity, release_date, genreArray, recommendation} = this.state;
 
     return(
       isLoading ? <Loading/>
@@ -280,7 +282,7 @@ export default class Result extends Component{
           <MyType userInfo={userInfo} popularity={popularity} release_date={release_date}/>
           <TopChoices topArtists={topArtists} topTracks={topTracks}/>
           <Genre genreArray={genreArray}/>
-          <Recommendation topTracks={topTracks} topArtists={topArtists} getRelatedArtist={this.getRelatedArtist} getArtistTopTrack={this.getArtistTopTrack}/>
+          <Recommendation recommendation={recommendation}/>
           <ThankYou/>
         </div>
     )

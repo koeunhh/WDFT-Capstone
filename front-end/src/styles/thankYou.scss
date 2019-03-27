@@ -7,10 +7,16 @@
   justify-content: center;
   align-items: center;
 
-  h1{
-    @include title;
-    font-size: 32px;
-    margin-bottom: 10px;
+  .title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h1{
+      @include title;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
   }
 
   .content{
