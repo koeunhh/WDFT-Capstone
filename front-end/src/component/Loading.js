@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/loading.scss';
 import discoBall from '../assets/discoBall.gif'
-import pplDancing from '../assets/ppl-dancing.svg';
+import pplDancing from '../assets/dancing.gif';
 export default class Loading extends Component{
   render(){
     return(
