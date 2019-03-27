@@ -32,7 +32,7 @@ export default class MyType extends Component{
         largestKey = key;
       }
     });
-    console.log(largestKey + ': ' + largestValue);
+    // console.log(largestKey + ': ' + largestValue);
     return largestKey;
   }
 
@@ -59,7 +59,7 @@ export default class MyType extends Component{
       newCopy[1970] = 0;
       newCopy[1980] = 0;
       newCopy[1990] = 0;
-      console.log(newCopy);
+      // console.log(newCopy);
       const largest = this.getLargestValue(newCopy);
       this.setState({year: largest});
     }
@@ -72,22 +72,26 @@ export default class MyType extends Component{
     var type = 90;
     var character;
     var text;
+    var id;
 
     if(isOld === true){
       type = 'Vintage Time Traveler';
-      character = A;
-      text = 'Your are type A. Seems like you enjoy listening to songs from the ' + year.substr(2, 2) + "'s!";
+      character = C;
+      text = 'Seems like you love listening to songs from the ' + year.substr(2, 2) + "'s! You travel back in time through music!";
+      id = 'traveler';
     }
     else{
       if(popularity < 65){
         type = 'Hippie Hipster';
         character = B;
-        text = 'Your are type B. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a.';   
+        text = 'Did you know that you have a unique taste in music? Instead of following popular trends, you favour quirky songs!';   
+        id = 'hipster';
       }
       else{
         type = 'Sexy Trender';
-        character = C;
-        text = 'Your are type C.';     
+        character = A;
+        text = 'Seems like you are always on top of trends! You never miss the hottest tracks!';     
+        id = 'trender';
       }
     }
     
@@ -97,7 +101,7 @@ export default class MyType extends Component{
       <h2 className='hi'>Hi {userInfo.display_name}, your music type is</h2>
       <h1 className='type'>{type}</h1>
       <img src={squiggly} alt='squiggly-line'/>
-      <p className='description'>{text}</p>
+      <p className='description' id={id}>{text}</p>
       <img className='character' src={character} alt='character'/>
       <ScrollTo>
       {({ scrollTo }) => (

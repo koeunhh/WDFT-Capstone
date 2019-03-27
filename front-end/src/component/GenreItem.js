@@ -7,7 +7,7 @@ export default class GenreItem extends Component {
     const id = 'item' + index;
     
     return (
-        <Textfit mode="single" className='content__item' id={id}>
+        <Textfit mode="single" max={30} className='content__item' id={id}>
         <h3 className='genre'>{Object.keys(item)}</h3>
         <h3 className='percentage'>{Object.values(item)}%</h3>
         </Textfit>

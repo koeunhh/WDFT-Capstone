@@ -128,16 +128,17 @@ export default class Result extends Component{
           .then(response => {
             const topArtists = response.data.items;
             var genreArray = [];
-            topArtists.map(artist => {
-              for(let i = 0; i < artist.genres.length; i++){
-                genreArray.push(artist.genres[i]);
+            // topArtists.map(artist => {
+            //   for(let i = 0; i < artist.genres.length; i++){
+            //     genreArray.push(artist.genres[i]);
+            //   }
+            // });
+            for(let i =0; i < topArtists.length; i++){
+              for(let j = 0; j < topArtists[i].genres.length; j++){
+                genreArray.push(topArtists[i].genres[j]);
               }
-            });
+            }     
             const genreCount = arrayCounter(genreArray);
-            console.log(genreCount);
-            // var keys = Object.keys(genreCount);
-            // const arrayLength = keys.length;
-            // console.log(arrayLength);
             var sortedCount = [0];
             var sortedGenre = [];
             Object.keys(genreCount).forEach(function(key) {
@@ -170,11 +171,11 @@ export default class Result extends Component{
                 }
               }
             });
-            console.log(sortedCount);
-            console.log(sortedGenre);
+            // console.log(sortedCount);
+            // console.log(sortedGenre);
             var arr = [];
             for(let i = 0; i < 5; i++){
-              var genreObj = new Object();
+              var genreObj = {};
               genreObj[sortedGenre[i]] = sortedCount[i];
               arr.push(genreObj);
             }
@@ -245,6 +246,29 @@ export default class Result extends Component{
           });
   }
 
+  getRelatedArtist = (id)=>{
+    axios.get(`https://api.spotify.com/v1/artists/${id}/related-artists`, { headers: { 'Authorization': 'Bearer ' + access_token } })
+          .then(res => {
+            const relatedArtists = res.data.artists;
+            var randomArtist = relatedArtists[Math.floor(Math.random() * relatedArtists.length)].id;
+            this.getArtistTopTrack(randomArtist);
+          })
+          .catch(err => {
+            console.log(err); 
+          })
+  }
+
+  getArtistTopTrack(id){
+    axios.get(`https://api.spotify.com/v1/artists/${id}/top-tracks?country=US`, { headers: { 'Authorization': 'Bearer ' + access_token } })
+          .then(res => {
+            console.log(res.data.tracks[0]);
+            console.log(res.data.tracks[1]);
+          })
+          .catch(err => {
+            console.log(err);
+          })
+  }
+
   render(){
     const {isLoading, userInfo, topArtists, topTracks, popularity, release_date, genreArray} = this.state;
 
@@ -256,7 +280,7 @@ export default class Result extends Component{
           <MyType userInfo={userInfo} popularity={popularity} release_date={release_date}/>
           <TopChoices topArtists={topArtists} topTracks={topTracks}/>
           <Genre genreArray={genreArray}/>
-          <Recommendation topTracks={topTracks}/>
+          <Recommendation topTracks={topTracks} topArtists={topArtists} getRelatedArtist={this.getRelatedArtist} getArtistTopTrack={this.getArtistTopTrack}/>
           <ThankYou/>
         </div>
     )

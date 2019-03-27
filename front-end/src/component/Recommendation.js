@@ -21,6 +21,13 @@ export default class Recommendation extends Component {
     this.audio = new Audio();
   }
 
+  // componentDidMount(){
+  //   const {getRelatedArtist, getArtistTopTrack, topArtists} = this.props;
+  //   const firstArtist = topArtists[0].id;
+  //   const secondArtist = topArtists[1].id;
+  //   getRelatedArtist(firstArtist);
+  // }
+
   togglePlay = () => {
     // determine - are we currently paused or playing?
      // if we are already paused then we should find THIS instances audio tag and call play
@@ -83,7 +90,7 @@ export default class Recommendation extends Component {
       <div className='recommendation'>
         <h1>Recommended Songs</h1>
         <img src={squiggly} alt='squiggly-line'/>
-        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a.</p>
+        <p>Based on your taste in music that Muze analyzed, <br/> we thought you might like these songs!</p>
         <div className='player'>
           <img onClick={this.previousSong} src={arrowPrevious} alt='previous' /> 
           <img className='player__albumCover' src={albumCover} alt='albumCover' />
