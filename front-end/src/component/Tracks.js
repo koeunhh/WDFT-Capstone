@@ -12,8 +12,8 @@ export default class Tracks extends Component{
     return(
       <>
         {trackArray.map((track) => {
-          return <ScrollAnimation animateIn="fadeInLeft">
-                  <div className='content__item' key={track.id}>
+          return <ScrollAnimation animateIn="fadeInLeft" key={trackArray.indexOf(track)}>
+                  <div className='content__item' key={trackArray.indexOf(track)}>
                       <img src={track.album.images[2].url} alt='artist'/>
                       <h5>{track.name}</h5>
                   </div>

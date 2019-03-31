@@ -23,10 +23,10 @@ export default withRouter(class ThankYou extends Component{
       </ScrollAnimation>
       <div className='content'>
         <h5>Code by Koeun Lee</h5>
-        <h5>Branstation</h5>
+        <h5>Brainstation</h5>
         <h5 id='design'>Design by Chelsea Hwang</h5>
       </div>
-      <ScrollAnimation initiallyVisible={true} delay='1500' animateIn="bounceIn">
+      <ScrollAnimation initiallyVisible={true} delay={1500} animateIn="bounceIn">
       <button onClick={this.logout}>Log out</button>
       </ScrollAnimation>
       </div>

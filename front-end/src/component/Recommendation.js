@@ -97,7 +97,7 @@ export default class Recommendation extends Component {
         <h1>Recommended Songs</h1>
         <img src={squiggly} alt='squiggly-line'/>
         <p>Based on your taste in music that Muze analyzed, <br/> we thought you might like these songs!</p>
-        <ScrollAnimation animateIn="fadeIn" duration='2'>
+        <ScrollAnimation animateIn="fadeIn" duration={2}>
         <div className='player'>
           <img onClick={this.previousSong} src={arrowPrevious} alt='previous' /> 
           <img className='player__albumCover' src={albumCover} alt='albumCover' />
