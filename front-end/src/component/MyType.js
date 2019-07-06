@@ -20,12 +20,10 @@ export default class MyType extends Component{
   }
 
   componentDidMount(){
-    // this.getLargestValue(this.props.release_date);
     this.getYear();
   }
 
   getLargestValue(obj){
-    // console.log(obj);
     var largestValue = 0;
     var largestKey = 'null';
     Object.keys(obj).forEach(function(key) {
@@ -34,7 +32,6 @@ export default class MyType extends Component{
         largestKey = key;
       }
     });
-    // console.log(largestKey + ': ' + largestValue);
     return largestKey;
   }
 
@@ -50,7 +47,6 @@ export default class MyType extends Component{
       newCopy[2015] = 0;
       newCopy[2018] = 0;
       newCopy[2019] = 0;
-      console.log(newCopy);
       const largest = this.getLargestValue(newCopy);
       this.setState({year: largest});
     }
@@ -61,14 +57,13 @@ export default class MyType extends Component{
       newCopy[1970] = 0;
       newCopy[1980] = 0;
       newCopy[1990] = 0;
-      // console.log(newCopy);
       const largest = this.getLargestValue(newCopy);
       this.setState({year: largest});
     }
   }
 
   render(){
-    const {userInfo, popularity} = this.props;
+    const {userInfo, popularity, getFirstRef} = this.props;
     const {year, isOld} = this.state;
 
     var type = 90;
@@ -119,6 +114,7 @@ export default class MyType extends Component{
       {({ scrollTo }) => (
         <Animate from='0' to='1' attributeName='opacity' begin={2000} duration={2000}>
         <button onClick={() => scrollTo({y: 667, smooth: true})}>See details</button>
+        {/* <button onClick={() => scrollTo({ref: getFirstRef, smooth: true})}>See details</button> */}
         </Animate>
       )}
       </ScrollTo>

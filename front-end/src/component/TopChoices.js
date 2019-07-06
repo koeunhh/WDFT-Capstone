@@ -25,20 +25,16 @@ export default class TopChoices extends Component {
     })
   }
   render(){
-    const { topArtists, topTracks } = this.props;
+    const { topArtists, topTracks, getFirstRef } = this.props;
     const { artistsBoolean } = this.state;
     const btnArtist = artistsBoolean ? 'clicked' : 'notClicked';
     const btnTrack = artistsBoolean ? 'notClicked' : 'clicked';
-    // const artists = (topArtists.length === 1) ? 'Artist' : 'Artists';
-    // const tracks = (topTracks.length === 1) ? 'Track' : 'Tracks';
 
     return(
-      <div className='topChoices' id='div1'>
+      <div className='topChoices' id='div1' ref={getFirstRef}>
         <h3 className='title'>Your Top 3</h3>
         <img src={squiggly} alt='squiggly-line'/>
         <div className='buttons'>
-          {/* <button className={btnArtist} onClick={this.displayArtists}>Top {topArtists.length} {artists}</button>
-          <button className={btnTrack} onClick={this.displayTracks}>Top {topTracks.length} {tracks}</button> */}
           <button className={btnArtist} onClick={this.displayArtists}>Artists</button>
           <button className={btnTrack} onClick={this.displayTracks}>Tracks</button>
         </div>

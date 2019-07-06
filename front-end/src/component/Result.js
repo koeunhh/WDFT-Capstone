@@ -14,8 +14,6 @@ import axios from 'axios';
 const access_token = window.location.hash.substr(14);
 var arrayCounter = require('array-counter');
 
-// localStorage.setItem('token', access_token);
-// localStorage.clearItem('token');
 export default class Result extends Component{
   constructor(props){
     super(props);
@@ -39,6 +37,7 @@ export default class Result extends Component{
       genreArray: [],
       recommendation: []
     }
+    this.firstRef = React.createRef();
   }
 
   componentDidMount(){
@@ -109,7 +108,6 @@ export default class Result extends Component{
     axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=${limit}&offset=${offset}`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(response => {
             const topTracks = response.data.items;
-            // console.log(topTracks);
             const popularityArray = topTracks.map(track => {
               return track.popularity;
             })
@@ -118,7 +116,6 @@ export default class Result extends Component{
               sum += popularityArray[i];
             }
             var popularityAverage = sum / popularityArray.length;
-            // console.log(popularityAverage);
             this.setState({popularity: popularityAverage})
           })
           .catch((error) => {
@@ -172,8 +169,6 @@ export default class Result extends Component{
                 }
               }
             });
-            // console.log(sortedCount);
-            // console.log(sortedGenre);
             var arr = [];
             for(let i = 0; i < 5; i++){
               var genreObj = {};
@@ -197,7 +192,6 @@ export default class Result extends Component{
             const releaseDateArray = topTracks.map(track => {
               return track.album.release_date.substr(0, 4);
             })
-            // console.log(releaseDateArray);
             for(let i = 0; i < releaseDateArray.length; i++){
               const newCopy = Object.assign({}, this.state.release_date);
               if(releaseDateArray[i] >= 2010){
@@ -238,7 +232,6 @@ export default class Result extends Component{
                 this.setState({release_date: newCopy});
               }
             }
-            // console.log(this.state.release_date);
           })
           .catch((error) => {
             console.log(error);
@@ -260,7 +253,6 @@ export default class Result extends Component{
   getArtistTopTrack(id){
     axios.get(`https://api.spotify.com/v1/artists/${id}/top-tracks?country=US`, { headers: { 'Authorization': 'Bearer ' + access_token } })
           .then(res => {
-            // console.log(res.data.tracks[0]);
             const track = res.data.tracks[0];
             this.setState({
               recommendation: [...this.state.recommendation, track]
@@ -271,6 +263,10 @@ export default class Result extends Component{
           })
   }
 
+  getFirstRef = () => {
+    return this.firstRef;
+  }
+
   render(){
     const {isLoading, userInfo, topArtists, topTracks, popularity, release_date, genreArray, recommendation} = this.state;
 
@@ -278,12 +274,12 @@ export default class Result extends Component{
       isLoading ? <Loading/>
       : <div className='result'>
           <img className='backgroundTop' src={backgroundTop} alt='background-top'/>
-          <img className='backgroundBottom' src={backgroundBottom} alt='background-bottom'/>
-          <MyType userInfo={userInfo} popularity={popularity} release_date={release_date}/>
-          <TopChoices topArtists={topArtists} topTracks={topTracks}/>
+          <MyType getFirstRef={this.getFirstRef} userInfo={userInfo} popularity={popularity} release_date={release_date}/>
+          <TopChoices getFirstRef={this.getFirstRef} topArtists={topArtists} topTracks={topTracks}/>
           <Genre genreArray={genreArray}/>
           <Recommendation recommendation={recommendation}/>
           <ThankYou/>
+          <img className='backgroundBottom' src={backgroundBottom} alt='background-bottom'/>
         </div>
     )
   }

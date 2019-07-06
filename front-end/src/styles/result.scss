@@ -1,12 +1,13 @@
 
 .backgroundTop{
   position: absolute;
-  // left: -50px;
+  width: 100vw;
   z-index: -1;
 }
 
 .backgroundBottom{
   position: absolute;
+  width: 100vw;
   z-index: -1;
   top: 2026px;
 }
