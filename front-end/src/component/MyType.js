@@ -66,7 +66,7 @@ export default class MyType extends Component{
     const {userInfo, popularity, getFirstRef} = this.props;
     const {year, isOld} = this.state;
 
-    var type = 90;
+    var type;
     var character;
     var text;
     var id;
